@@ -14,13 +14,3 @@ RUN apt-get update && \
     apt-get install -y \
         zlib1g-dev && \
     docker-php-ext-install zip
-
-RUN cd /tmp
-RUN composer config repositories.noma composer https://satis.nomasolutions.pl/ -n -g
-# rozgrzanie cache'a najnowsza wersja doctrine wystarczy, tym bardziej ze wersje pomiedzy projektami beda
-# sie roznily bo np. mam 2.8.4 ale potrzebowalem nowszej doctrine do jakiegos innego bundle'a
-RUN composer require symfony/symfony:2.8.* --no-interaction
-RUN composer install
-
-ADD docker_entrypoint.sh /docker_entrypoint.sh
-
